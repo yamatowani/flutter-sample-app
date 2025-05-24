@@ -16,4 +16,15 @@ class Article {
   final List<String> tags;
   final DateTime createdAt;
   final String url;
+
+  factory Article.fromJson(dynamic json) {
+    return Article(
+      title: json['title'] as String,
+      user: User.fromJson(json['user']),
+      url: json['url'] as String,
+      createdAt: DateTime.parse(json['created_at'] as String),
+      likesCount: json['likes_count'] as int,
+      tags: List<String>.from(json['tags'].map((tag) => tag['name'])),
+    );
+  }
 }
