@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/widgets/article_container.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -40,6 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
             },
           ),
         ),
+        const ArticleContainer(),
       ],),
     );
   }
