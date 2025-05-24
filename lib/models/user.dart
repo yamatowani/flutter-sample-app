@@ -8,8 +8,9 @@ class User {
   final String profileImageUrl;
 
   factory User.fromJson(dynamic json) {
-    return User(id: json['id'] as String,
-    profileImageUrl: json['profileImageUrl'] as String,
+    return User(
+      id: json['id'] as String,
+      profileImageUrl: json['profileImageUrl'] as String,
     );
   }
 }
