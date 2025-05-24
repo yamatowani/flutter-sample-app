@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/screens/article_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_study/models/article.dart';
 
@@ -29,6 +30,14 @@ class ArticleContainer extends StatelessWidget {
             Radius.circular(32), // 角丸を設定
           ),
         ),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: ((context) => ArticleScreen(article: article)),
+              )
+            );
+          },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -103,6 +112,8 @@ class ArticleContainer extends StatelessWidget {
           ],
         ),
       ),
+      )
     );
   }
 }
+
