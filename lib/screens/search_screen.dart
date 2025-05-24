@@ -55,17 +55,25 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Future<List<Article>> searchQiita(String keyword) async {
     final uri = Uri.https('qiita.com', '/api/v2/items', {
-    'query': 'title:$keyword',
-    'per_page': '10',
+      'query': 'title:$keyword',
+      'per_page': '10',
     });
     final String token = dotenv.env['QIITA_ACCESS_TOKEN'] ?? '';
+    
     final http.Response res = await http.get(uri, headers: {
       'Authorization': 'Bearer $token',
     });
+    
     if (res.statusCode == 200) {
-      final List<dynamic> body = jsonDecode(res.body);
-      return body.map((dynamic json) => Article.fromJson(json)).toList();
+      try {
+        final List<dynamic> body = jsonDecode(res.body);
+        return body.map((dynamic json) => Article.fromJson(json)).toList();
+      } catch (e) {
+        print('Error parsing JSON: $e');
+        return [];
+      }
     } else {
+      print('API request failed with status: ${res.statusCode}');
       return [];
     }
   }
