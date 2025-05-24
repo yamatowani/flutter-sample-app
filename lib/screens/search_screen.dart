@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/models/user.dart';
 import 'package:flutter_study/widgets/article_container.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -41,7 +42,18 @@ class _SearchScreenState extends State<SearchScreen> {
             },
           ),
         ),
-        const ArticleContainer(),
+        ArticleContainer(
+          article: Article(
+            title: 'テスト',
+            user: User(
+              id: 'qii-taro',
+              profileImageUrl: 'https://firebasestorage.googleapis.com/v0/b/gs-expansion-test.appspot.com/o/unknown_person.png?alt=media',
+            ),
+            createdAt: DateTime.now(),
+            tags: ['Flutter', 'Dart'],
+            url: 'https://example.com',
+          )
+        ),
       ],),
     );
   }
